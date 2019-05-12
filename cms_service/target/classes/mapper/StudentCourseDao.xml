@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tust.edu.cms.dao.StudentCourseDao">
+    <resultMap id="sc" type="StudentCource">
+        <result column="score" property="score" javaType="Integer"/>
+        <result column="studentNum" property="studentNum" javaType="String"/>
+        <result column="courseNum" property="courseNum" javaType="String"/>
+    </resultMap>
+
+    <select id="select" resultMap="sc">
+        select * from studentCourse where studentNum=#{arg0} and courseNum=#{arg1}
+    </select>
+    <insert id="insert">
+        insert into studentCourse(studentNum,courseNum) values(#{arg0},#{arg1})
+    </insert>
+
+    <delete id="delete">
+        delete from studentCourse where studentNum=#{arg0} and courseNum=#{arg1}
+    </delete>
+
+    <update id="updateScore">
+        update studentCourse set score=#{arg2} where courseNum=#{arg0} and studentNum=#{arg1}
+    </update>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tust.edu.cms.dao.CourseDao">
+    <resultMap id="course" type="Course">
+        <id column="num" property="num" javaType="String"/>
+        <result column="name" property="name" javaType="String"/>
+        <result column="ctime" property="ctime" javaType="String"/>
+        <result column="maxCount" property="maxCount" javaType="Integer"/>
+        <result column="studentCount" property="studentCount" javaType="Integer"/>
+        <result column="roomNum" property="roomNum" javaType="String"/>
+        <result column="teacherNum" property="teacherNum" javaType="String"/>
+    </resultMap>
+
+    <select id="select" parameterType="String" resultMap="course">
+        select * from course where num=#{num}
+    </select>
+
+    <select id="selectTeacherCourses" parameterType="String" resultMap="course">
+        select * from course where teacherNum=#{tnum}
+    </select>
+
+    <update id="updateAddStudent" parameterType="String">
+        update course set studentCount=studentCount+1 where num=#{num}
+    </update>
+
+    <update id="updateDelStudent" parameterType="String">
+        update course set studentCount=studentCount-1 where num=#{num}
+    </update>
+
+    <select id="selectMycoursebyCtime" resultMap="course">
+        select c.num as num,c.name as name,c.ctime as ctime,c.maxCount as maxCount,c.studentCount as studentCount,c.roomNum as roomNum,c.teacherNum as teacherNum from course as c right join studentCourse as sc on c.num=sc.courseNum left join student as s on s.num=sc.studentNum where s.num=#{arg0} and c.ctime=#{arg1}
+    </select>
+
+</mapper>

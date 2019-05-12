@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tust.edu.cms.dao.StudentInfoDao">
+    <resultMap id="studentInfo" type="StudentInfo">
+        <id column="num" property="num" javaType="String"/>
+        <result column="name" property="name" javaType="String"/>
+        <result column="score" property="score" javaType="Integer"/>
+    </resultMap>
+
+    <select id="selectInThisCourse" resultMap="studentInfo">
+        select s.num as num,s.name as name,sc.score as score from student as s left join studentCourse as sc on s.num=sc.studentNum where sc.courseNum=#{cnum}
+    </select>
+
+</mapper>

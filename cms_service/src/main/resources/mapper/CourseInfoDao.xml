@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tust.edu.cms.dao.CourseInfoDao">
+    <resultMap id="courseinfo" type="CourseInfo">
+        <id column="num" property="num" javaType="String"/>
+        <result column="name" property="name" javaType="String"/>
+        <result column="ctime" property="ctime" javaType="String"/>
+        <result column="maxCount" property="maxCount" javaType="Integer"/>
+        <result column="studentCount" property="studentCount" javaType="Integer"/>
+        <result column="roomNum" property="roomNum" javaType="String"/>
+        <result column="tname" property="teachername" javaType="String"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="courseinfo">
+        select c.num as num,c.name as name,c.ctime as ctime,c.maxCount as maxCount,c.studentCount as studentCount,c.roomNum as roomNum,t.name as tname from course as c left join teacher as t on c.teacherNum=t.num
+    </select>
+
+    <select id="select" resultMap="courseinfo">
+        select c.num as num,c.name as name,c.ctime as ctime,c.maxCount as maxCount,c.studentCount as studentCount,c.roomNum as roomNum,t.name as tname from course as c left join teacher as t on c.teacherNum=t.num where c.num in (select courseNum from studentCourse where studentNum=#{num})
+    </select>
+
+</mapper>
