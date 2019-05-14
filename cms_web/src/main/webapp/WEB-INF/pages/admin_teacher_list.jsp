@@ -29,7 +29,7 @@
                             <td>${emp.profession}</td>
                             <td>${emp.phone}</td>
                             <td>
-                                <a href="/admin/teachermod?cnum=${emp.num}">修改</a>
+                                <a href="/admin/teacherToMod?tnum=${emp.num}">修改</a>
                             </td>
                         </tr>
                     </c:forEach>

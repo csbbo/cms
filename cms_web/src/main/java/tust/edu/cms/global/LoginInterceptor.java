@@ -11,14 +11,15 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 
         String url = httpServletRequest.getRequestURI();
-        if(url.toLowerCase().indexOf("login")>=0){
+        if(url.toLowerCase().indexOf("login")>=0 || url.toLowerCase().indexOf("regist")>=0){
             return true;
         }
 
         HttpSession session = httpServletRequest.getSession();
-        if(session.getAttribute("employee")!=null){
+        if(session.getAttribute("people")!=null){//session里面有值表示已经登录
             return true;
         }
+
         httpServletResponse.sendRedirect("/to_login");
         return false;
     }

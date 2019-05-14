@@ -10,4 +10,5 @@ public interface TeacherDao {
     List<Teacher> selectAll();
     Teacher select(String num);
     void insert(Teacher teacher);
+    void update(Teacher teacher);
 }

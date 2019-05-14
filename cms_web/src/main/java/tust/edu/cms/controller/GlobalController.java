@@ -44,7 +44,7 @@ public class GlobalController {
             session.setAttribute("identity","teacher");
             return "redirect:/teacher/course_list";
         }else if (adminUser!=null && adminUser.getPassword().equals(password)){
-            session.setAttribute("people",teacher);
+            session.setAttribute("people",adminUser);
             session.setAttribute("identity","admin");
             return "redirect:/admin/teacherlist";
         }else {

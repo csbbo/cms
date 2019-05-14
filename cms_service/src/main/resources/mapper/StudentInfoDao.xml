@@ -8,7 +8,7 @@
     </resultMap>
 
     <select id="selectInThisCourse" resultMap="studentInfo">
-        select s.num as num,s.name as name,sc.score as score from student as s left join studentCourse as sc on s.num=sc.studentNum where sc.courseNum=#{cnum}
+        select s.num as num,s.name as name,sc.score as score from student as s join studentCourse as sc on s.num=sc.studentNum where sc.courseNum=#{cnum}
     </select>
 
 </mapper>

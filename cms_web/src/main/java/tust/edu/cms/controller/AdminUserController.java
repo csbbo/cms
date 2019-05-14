@@ -2,7 +2,6 @@ package tust.edu.cms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tust.edu.cms.dao.StudentDao;
 import tust.edu.cms.dao.TeacherDao;
@@ -27,18 +26,18 @@ public class AdminUserController {
         return "admin_teacher_list";
     }
 
-    @RequestMapping("/teacherToMod")
+    @RequestMapping(value = "/teacherToMod",params = "tnum")
     public String teacherToMod(Map<String,Object> map,String tnum){
         Teacher teacher = teacherDao.select(tnum);
-        map.put("teacher",teacher);
+        map.put("teacher",new Teacher());
+        map.put("old",teacher);
         return "admin_teacher_mod";
     }
 
-    @RequestMapping("/teachermod/{tnum}")
-    public String teacherMod(Map<String,Object> map,@PathVariable String tnum){
-        Teacher teacher = teacherDao.select(tnum);
-        map.put("teacher",teacher);
-        return "admin_teacher_mod";
+    @RequestMapping("/teachermod")
+    public String teacherMod(Teacher teacher){
+        teacherDao.update(teacher);
+        return "redirect:teacherlist";
     }
 
     @RequestMapping("/teacherToAdd")
@@ -60,12 +59,18 @@ public class AdminUserController {
         return "admin_student_list";
     }
 
-    @RequestMapping("/studentmod")
-    public String studentMod(Map<String,Object> map,String snum){
+    @RequestMapping(value = "/studentToMod",params = "snum")
+    public String studentToMod(Map<String,Object> map,String snum){
         Student student = studentDao.select(snum);
-        map.put("student",student);
+        map.put("student",new Student());
+        map.put("old",student);
         return "admin_student_mod";
     }
 
+    @RequestMapping("/studentmod")
+    public String studentMod(Student student){
+        studentDao.update(student);
+        return "redirect:studentlist";
+    }
 
 }

@@ -24,11 +24,12 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-<!--        <mvc:interceptors>-->
-<!--            <mvc:interceptor>-->
-<!--                <mvc:mapping path="/**"/>-->
-<!--                <bean class="tust.edu.cms.global.LoginInterceptor"/>-->
-<!--            </mvc:interceptor>-->
-<!--        </mvc:interceptors>-->
+    <!--登录拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="tust.edu.cms.global.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

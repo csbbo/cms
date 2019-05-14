@@ -27,7 +27,7 @@
                             <td>${emp.name}</td>
                             <td>${emp.age}</td>
                             <td>
-                                <a href="/admin/studentmod?snum=${emp.num}">修改</a>
+                                <a href="/admin/studentToMod?snum=${emp.num}">修改</a>
                             </td>
                         </tr>
                     </c:forEach>

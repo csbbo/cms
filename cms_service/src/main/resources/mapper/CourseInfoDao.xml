@@ -12,11 +12,11 @@
     </resultMap>
 
     <select id="selectAll" resultMap="courseinfo">
-        select c.num as num,c.name as name,c.ctime as ctime,c.maxCount as maxCount,c.studentCount as studentCount,c.roomNum as roomNum,t.name as tname from course as c left join teacher as t on c.teacherNum=t.num
+        select c.num as num,c.name as name,c.ctime as ctime,c.maxCount as maxCount,c.studentCount as studentCount,c.roomNum as roomNum,t.name as tname from course as c join teacher as t on c.teacherNum=t.num
     </select>
 
     <select id="select" resultMap="courseinfo">
-        select c.num as num,c.name as name,c.ctime as ctime,c.maxCount as maxCount,c.studentCount as studentCount,c.roomNum as roomNum,t.name as tname from course as c left join teacher as t on c.teacherNum=t.num where c.num in (select courseNum from studentCourse where studentNum=#{num})
+        select c.num as num,c.name as name,c.ctime as ctime,c.maxCount as maxCount,c.studentCount as studentCount,c.roomNum as roomNum,t.name as tname from course as c join teacher as t on c.teacherNum=t.num where c.num in (select courseNum from studentCourse where studentNum=#{num})
     </select>
 
 </mapper>

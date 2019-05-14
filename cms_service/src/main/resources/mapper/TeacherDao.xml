@@ -19,4 +19,8 @@
     <insert id="insert" parameterType="Teacher">
         insert into teacher values(#{num},#{name},#{phone},#{profession},#{password})
     </insert>
+
+    <update id="update" parameterType="Teacher">
+        update teacher set name=#{name},phone=#{phone},profession=#{profession},password=#{password} where num=#{num}
+    </update>
 </mapper>
