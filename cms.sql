@@ -9,7 +9,7 @@ CREATE TABLE `adminUser` (
 LOCK TABLES `adminUser` WRITE;
 insert into `adminUser`(name,password) values
 ("root","8520"),
-("陈少波","8520");
+("admin","8520");
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `student`;
